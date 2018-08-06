@@ -8,6 +8,7 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $drink
+ * @property string $size
  * @property float $price
  * @property int $status
  * @property \Cake\I18n\FrozenDate $created
@@ -29,6 +30,7 @@ class Drink extends Entity
      */
     protected $_accessible = [
         'drink' => true,
+        'size' => true,
         'price' => true,
         'status' => true,
         'created' => true,

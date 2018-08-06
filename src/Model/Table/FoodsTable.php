@@ -38,7 +38,7 @@ class FoodsTable extends Table
         parent::initialize($config);
 
         $this->setTable('foods');
-        $this->setDisplayField('id');
+        $this->setDisplayField('food');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

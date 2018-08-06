@@ -19,6 +19,7 @@ class DrinksFixture extends TestFixture
     public $fields = [
         'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
         'drink' => ['type' => 'string', 'length' => 64, 'null' => false, 'default' => null, 'collate' => 'utf8_spanish2_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'size' => ['type' => 'string', 'length' => 64, 'null' => false, 'default' => null, 'collate' => 'utf8_spanish2_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'price' => ['type' => 'float', 'length' => null, 'precision' => null, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => ''],
         'status' => ['type' => 'tinyinteger', 'length' => 4, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'created' => ['type' => 'date', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
@@ -44,10 +45,11 @@ class DrinksFixture extends TestFixture
             [
                 'id' => 1,
                 'drink' => 'Lorem ipsum dolor sit amet',
+                'size' => 'Lorem ipsum dolor sit amet',
                 'price' => 1,
                 'status' => 1,
-                'created' => '2018-07-24',
-                'modified' => '2018-07-24'
+                'created' => '2018-08-01',
+                'modified' => '2018-08-01'
             ],
         ];
         parent::init();

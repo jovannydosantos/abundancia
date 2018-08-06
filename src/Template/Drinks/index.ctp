@@ -19,6 +19,7 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('drink') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('size') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('price') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('status') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
@@ -31,6 +32,7 @@
             <tr>
                 <td><?= $this->Number->format($drink->id) ?></td>
                 <td><?= h($drink->drink) ?></td>
+                <td><?= h($drink->size) ?></td>
                 <td><?= $this->Number->format($drink->price) ?></td>
                 <td><?= $this->Number->format($drink->status) ?></td>
                 <td><?= h($drink->created) ?></td>

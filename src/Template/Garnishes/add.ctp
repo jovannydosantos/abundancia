@@ -18,6 +18,7 @@
         <legend><?= __('Add Garnish') ?></legend>
         <?php
             echo $this->Form->control('garnish');
+            echo $this->Form->control('size');
             echo $this->Form->control('status');
             echo $this->Form->control('price');
         ?>

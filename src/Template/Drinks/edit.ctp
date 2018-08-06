@@ -24,6 +24,7 @@
         <legend><?= __('Edit Drink') ?></legend>
         <?php
             echo $this->Form->control('drink');
+            echo $this->Form->control('size');
             echo $this->Form->control('price');
             echo $this->Form->control('status');
         ?>

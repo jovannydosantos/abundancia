@@ -36,7 +36,7 @@ class GarnishesTable extends Table
         parent::initialize($config);
 
         $this->setTable('garnishes');
-        $this->setDisplayField('id');
+        $this->setDisplayField('garnish');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
@@ -65,11 +65,17 @@ class GarnishesTable extends Table
             ->notEmpty('garnish');
 
         $validator
+            ->scalar('size')
+            ->maxLength('size', 64)
+            ->requirePresence('size', 'create')
+            ->notEmpty('size');
+
+        $validator
             ->requirePresence('status', 'create')
             ->notEmpty('status');
 
         $validator
-            ->decimal('price')
+            ->numeric('price')
             ->requirePresence('price', 'create')
             ->notEmpty('price');
 

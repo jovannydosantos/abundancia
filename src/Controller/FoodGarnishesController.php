@@ -61,8 +61,8 @@ class FoodGarnishesController extends AppController
             }
             $this->Flash->error(__('The food garnish could not be saved. Please, try again.'));
         }
-        $foods = $this->FoodGarnishes->Foods->find('list', ['limit' => 200]);
-        $garnishes = $this->FoodGarnishes->Garnishes->find('list', ['limit' => 200]);
+        $foods = $this->FoodGarnishes->Foods->find('list');
+        $garnishes = $this->FoodGarnishes->Garnishes->find('list');
         $this->set(compact('foodGarnish', 'foods', 'garnishes'));
     }
 

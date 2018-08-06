@@ -23,6 +23,10 @@
             <td><?= h($drink->drink) ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Size') ?></th>
+            <td><?= h($drink->size) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($drink->id) ?></td>
         </tr>

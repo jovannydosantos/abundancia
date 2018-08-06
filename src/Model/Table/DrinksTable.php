@@ -36,7 +36,7 @@ class DrinksTable extends Table
         parent::initialize($config);
 
         $this->setTable('drinks');
-        $this->setDisplayField('id');
+        $this->setDisplayField('drink');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
@@ -63,6 +63,12 @@ class DrinksTable extends Table
             ->maxLength('drink', 64)
             ->requirePresence('drink', 'create')
             ->notEmpty('drink');
+
+        $validator
+            ->scalar('size')
+            ->maxLength('size', 64)
+            ->requirePresence('size', 'create')
+            ->notEmpty('size');
 
         $validator
             ->numeric('price')

@@ -15,7 +15,7 @@ class UsersController extends AppController
 
     public function beforeFilter(Event $event){
         parent::beforeFilter($event);
-        $this->Auth->allow(['logout','add']);
+        $this->Auth->allow(['logout','add','login','addClient']);
     }
 
     public function login(){
@@ -25,7 +25,20 @@ class UsersController extends AppController
             $user = $this->Auth->identify();
             if ($user) {
                 $this->Auth->setUser($user);
-                return $this->redirect($this->Auth->redirectUrl());
+                $logedUser = $this->request->session()->read('Auth.User');
+                if ($logedUser['role_id']==1){
+                    return $this->redirect($this->Auth->redirectUrl());
+                }else if($logedUser['role_id']==4){
+                    return $this->redirect(['action'=>'login']);
+                }else if($logedUser['role_id']==2){
+                    return $this->redirect(['controller'=>'deliveries','action'=>'index']);
+                }else if($logedUser['role_id']==3){
+                    return $this->redirect(['controller'=>'orders','action'=>'index']);
+                }else{
+                    return $this->redirect(['action'=>'logout']);
+                }
+
+
             } else {
                 $this->Flash->error('Usuario o contraseña incorrectos, verifique por favor.');
             }
@@ -36,6 +49,22 @@ class UsersController extends AppController
         return $this->redirect($this->Auth->logout());
     }
 
+    public function addClient()
+    {
+        $user = $this->Users->newEntity();
+        if ($this->request->is('post')) {
+            $user = $this->Users->patchEntity($user, $this->request->getData());
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('The user has been saved.'));
+
+                return $this->redirect(['action' => 'login']);
+            }
+            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            debug($user->errors());
+        }
+        $roles = $this->Users->Roles->find('list');
+        $this->set(compact('user', 'roles'));
+    }
     /**
      * Index method
      *
@@ -84,7 +113,7 @@ class UsersController extends AppController
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-        $roles = $this->Users->Roles->find('list', ['limit' => 200]);
+        $roles = $this->Users->Roles->find('list');
         $this->set(compact('user', 'roles'));
     }
 

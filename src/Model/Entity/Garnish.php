@@ -8,6 +8,7 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $garnish
+ * @property string $size
  * @property int $status
  * @property float $price
  * @property \Cake\I18n\FrozenDate $created
@@ -29,6 +30,7 @@ class Garnish extends Entity
      */
     protected $_accessible = [
         'garnish' => true,
+        'size' => true,
         'status' => true,
         'price' => true,
         'created' => true,

@@ -34,7 +34,7 @@ class FoodTypesTable extends Table
         parent::initialize($config);
 
         $this->setTable('food_types');
-        $this->setDisplayField('id');
+        $this->setDisplayField('food_type');
         $this->setPrimaryKey('id');
 
         $this->hasMany('Foods', [

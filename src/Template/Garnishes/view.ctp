@@ -23,6 +23,10 @@
             <td><?= h($garnish->garnish) ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Size') ?></th>
+            <td><?= h($garnish->size) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($garnish->id) ?></td>
         </tr>

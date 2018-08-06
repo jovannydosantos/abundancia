@@ -18,7 +18,7 @@
         <legend><?= __('Add Silverware') ?></legend>
         <?php
             echo $this->Form->control('food_order_id', ['options' => $foodOrders]);
-            echo $this->Form->control('silverware_type');
+            echo $this->Form->control('silverware_type',['options' => ['0' => 'Plastico', '1' => 'Metal']]);
             echo $this->Form->control('total_silverware');
             echo $this->Form->control('price');
         ?>

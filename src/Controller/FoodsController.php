@@ -52,17 +52,40 @@ class FoodsController extends AppController
     public function add()
     {
         $food = $this->Foods->newEntity();
+        $this->loadModel('Garnishes');
+
         if ($this->request->is('post')) {
             $food = $this->Foods->patchEntity($food, $this->request->getData());
-            if ($this->Foods->save($food)) {
-                $this->Flash->success(__('The food has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+            if ($result=$this->Foods->save($food)) {
+
+                $datos= $this->request->getData();
+                $id = $result->id;
+                $this->loadModel('FoodGarnishes');
+                $saveError=0;
+
+                foreach ($datos['garnishes_id'] as $garnish_id):
+
+                    $foodGarnishes = $this->FoodGarnishes->newEntity(['food_id' => $id,'garnishes_id' => $garnish_id]);
+
+                    if (!$this->FoodGarnishes->save($foodGarnishes)) {
+                        $saveError=1;
+                    }
+                endforeach;
+
+                if($saveError==0):
+                    $this->Flash->success('Platillo y guarniciones guardadas');
+                else:
+                    $this->Flash->error('Platillo guardado pero se encontraron inconvenientes al guardar las guarniciones. Verifique por favor');
+                endif;
+            }else{
+                $this->Flash->error(__('El platillo no pudo ser guardado. Por favor, intente nuevamente.'));
             }
-            $this->Flash->error(__('The food could not be saved. Please, try again.'));
+            return $this->redirect(['action' => 'index']);
         }
-        $foodTypes = $this->Foods->FoodTypes->find('list', ['limit' => 200]);
-        $this->set(compact('food', 'foodTypes'));
+        $foodTypes = $this->Foods->FoodTypes->find('list');
+        $garnishes = $this->Garnishes->find('list');
+        $this->set(compact('food', 'foodTypes','garnishes'));
     }
 
     /**

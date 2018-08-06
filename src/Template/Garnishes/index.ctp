@@ -19,6 +19,7 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('garnish') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('size') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('status') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('price') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
@@ -31,6 +32,7 @@
             <tr>
                 <td><?= $this->Number->format($garnish->id) ?></td>
                 <td><?= h($garnish->garnish) ?></td>
+                <td><?= h($garnish->size) ?></td>
                 <td><?= $this->Number->format($garnish->status) ?></td>
                 <td><?= $this->Number->format($garnish->price) ?></td>
                 <td><?= h($garnish->created) ?></td>
